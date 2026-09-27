@@ -95,8 +95,11 @@ ARCHITECTURAL TARGET / END-TO-END IMPLEMENTATION REQUIRED.
 Canonical implementation repository:
 Kelziejordan/Arg
 
-Current Arg main head:
+Current Arg implementation baseline before this documentation reset:
 2ed9867219d7ae3a931a094f0f9931181ed6ffea
+
+Current Arg main head after the 2026-09-27 documentation reset:
+8fb0a9c61f9abc5c3db86a2517b1b576778b12ea
 
 Current Arg dependency boundary:
 @kelziejordan/argcore 1.0.0-argcore-006
