@@ -1,63 +1,165 @@
 # ArgAtlas Project State
 
-Date: 2026-09-12
+Date: 2026-09-27
+Status: CURRENT — FRESH ENGINEERING RESTART
 
-## Current position
+## Current project position
 
-The Arg ecosystem is being treated as a governed intelligence lifecycle rather than a collection of independent AI applications.
+The Arg ecosystem is being advanced as one governed intelligence lifecycle, not as a collection of disconnected AI applications.
 
-The current project state is explicitly:
+The current architectural family is:
 
-- Multi-LLM Orchestrator v2.3: SHIPPED / FROZEN.
-- Orchestrator scope: FROZEN; it is now infrastructure, not the destination.
-- H-094 / Knowledge Vault forensic investigation: ACTIVE.
-- Further architectural expansion: DEFERRED until forensic evidence identifies the next justified boundary.
+ArgCore
+-> constitutional authority
 
-The orchestrator's state transition is recorded as:
+Arg / ArgOS
+-> governed runtime and orchestration
 
-ADVANCED -> FINISH + SHIP -> SHIPPED / FROZEN
+ArgAtlas
+-> continuity, provenance, project state, and architectural memory
 
-The shipped v2.3 implementation was merged to the canonical Arg main branch at commit `b350ae939aaa68c117a2da129d6689050ac7f20c` with commit message `Ship multi-LLM orchestration v2.3`.
+ArgLearn
+-> governed learning, analysis, discovery, and improvement proposals
 
-## Current architectural roles
+TCS
+-> canonical chronological runtime evidence
 
-- ArgCore: constitutional and governance boundary; frozen foundation.
-- ArgOS: governed runtime, execution, and orchestration layer.
-- ArgAtlas: engineering continuity, provenance, project state, and architectural memory.
-- ArgLearn: intended empirical learning, analysis, findings, and improvement layer.
-- Knowledge Vault: intended canonical persistent knowledge substrate; current topology remains under forensic investigation.
-- ArgFoundation: historical evidence and lineage.
-- TCS: ordered trace/history of runtime events.
-- DigitalHands: external action/actuation boundary.
+VTM
+-> temporal reconstruction and bounded counterfactual analysis
 
-## Orchestrator transition
+DigitalHands
+-> intended external digital actuation boundary
 
-The Multi-LLM Orchestrator v2.3 is no longer the active destination of development. Its existing product scope was completed, verified, merged, and frozen so it can serve as stable infrastructure for the broader Arg ecosystem.
+ACL-001
+-> canonical intelligence lifecycle
 
-Do not reopen orchestrator scope for adjacent improvements unless a separately justified requirement and explicit decision establishes a new boundary.
+## Canonical lifecycle
 
-## Active forensic state: H-094 / Knowledge Vault
+ACL-001 defines the lifecycle:
 
-H-094 remains UNVERIFIED.
+Intent
+-> Translation (ATL)
+-> Planning
+-> Execution
+-> Validation
+-> Observation
+-> Memory
+-> Next Intent
 
-The previously discussed savings claim must not be treated as an established architectural fact until the original experiment, denominator, methodology, mechanism, and evidence are recovered and independently reproduced.
+Recovery is a controlled exception path.
+Learning is a governed feedback loop that cannot directly modify constitutional law or the frozen runtime.
 
-The current investigation should prioritize historical evidence concerning Knowledge Vault, Knowledge Objects, Context Packs, data-saving experiments, and related artifacts. Historical material is evidence of prior work or intent; it does not automatically override current canonical implementation.
+ACL-001 is canonical as an architectural specification. Implementation alignment is proven only where executable evidence exists.
 
-The next implementation boundary will be selected from the forensic result rather than from speculative architecture expansion.
+## ATL status
 
-## Next proof objective
+ATL is constitutionally defined as the semantic Translation Layer between Intent and Planning.
 
-Recover and reproduce H-094. Determine what was actually measured, what mechanism produced the result, whether it is reproducible, and whether that mechanism justifies a current Knowledge Vault/runtime capability.
+Responsibilities:
+- terminology normalization
+- ontology mapping
+- audience abstraction
+- reversible meaning preservation
+- deterministic interpretation
+- canonical intent and translation metadata
 
-Do not add another subsystem merely to satisfy the architecture diagram.
+A separate historical argos-atl C-ABI/interface usage remains an explicit forensic reconciliation item. The two meanings must not be silently merged.
 
-## Continuity rule
+Current status:
+CONSTITUTIONALLY DEFINED / IMPLEMENTATION PROOF REQUIRED.
 
-ArgAtlas must remain current enough to resume engineering without reconstructing the project from memory. After every meaningful engineering transition, update this file and `MASTER_PROJECT_STATE.md`, including the date and the affected state. Historical evidence must remain preserved without being rewritten to fit current state.
+## VTM status
+
+VTM is an existing Arg runtime subsystem for temporal reconstruction, bounded counterfactual analysis, trajectory comparison, and provenance-preserving reconstruction.
+
+Current implementation proves reconstruction/comparison behavior at defined test boundaries.
+
+The broader ACL-001 Observation/Validation role and any canonical temporal authority remain subject to explicit integration proof.
+
+Current status:
+IMPLEMENTED / PARTIALLY PROVEN / INTEGRATION TARGET.
+
+## DigitalHands status
+
+DigitalHands is the intended external actuation boundary for the ArgOS ecosystem.
+
+It is not yet accepted as a fully proven production capability.
+
+The next meaningful implementation target is one bounded real-world digital action exercised through the governed lifecycle, with observable outcome and evidence.
+
+Current status:
+ARCHITECTURAL TARGET / END-TO-END IMPLEMENTATION REQUIRED.
+
+## Current Arg runtime state
+
+Canonical implementation repository:
+Kelziejordan/Arg
+
+Current Arg main head:
+2ed9867219d7ae3a931a094f0f9931181ed6ffea
+
+Current Arg dependency boundary:
+@kelziejordan/argcore 1.0.0-argcore-006
+
+Current ArgCore repository package:
+@kelziejordan/argcore 1.0.0-argcore-007
+
+ArgOS must not silently upgrade itself to ArgCore-007. That is a separate contract-upgrade gate.
+
+## Proven boundaries
+
+- Phase 0 governance certification.
+- Domain B Universal Task Lifecycle at its scoped boundary.
+- Lifecycle correlation through consequential ArgCore evidence at the scoped boundary.
+- ArgCore execution/state evidence bridge to TCS.
+- Durable TCS append/reopen and fail-closed malformed-history handling.
+- B1 denial boundary.
+- External Action HTTP POST through ArgCore governance to completed lifecycle and TCS evidence.
+- VTM reconstruction/comparison at its tested boundaries.
+- Multi-provider orchestration at its tested boundaries.
+
+## Not yet proven
+
+- Complete Intent -> ATL -> Planning -> Execution -> Validation -> Observation -> Memory loop.
+- Semantic ATL implementation as a complete runtime phase.
+- Production-grade DigitalHands.
+- Complete VTM integration across the canonical lifecycle.
+- Authoritative recovery/resume.
+- Fully merged and reverified Multi-LLM-001.
+- Full ecosystem certification as one continuous runtime.
+
+## Current checklist strategy
+
+The existing governance checklist remains historical execution evidence and is not to be rewritten to fabricate completion.
+
+The fresh operational sequence is:
+
+1. Reconcile current repository/package provenance.
+2. Close remaining checklist gates that materially establish lifecycle foundations.
+3. Freeze those proven boundaries.
+4. Implement the minimum ATL contract needed for the canonical lifecycle.
+5. Resolve VTM's exact role at Observation/Validation boundaries.
+6. Integrate DigitalHands through governed execution.
+7. Run one complete real-world lifecycle.
+8. Inject a controlled failure and verify the allowed recovery boundary.
+9. Record evidence and update certification claims.
+
+Do not create a parallel architecture to accomplish this sequence.
 
 ## Evidence hierarchy
 
-Current frozen canonical implementation > verified repository state > documented current decision > historical architectural decision > historical conversation/proposal.
+Current executable implementation and CI evidence
+>
+verified repository state
+>
+current architectural decisions
+>
+historical architecture
+>
+conversation/proposal.
 
 Unknown or conflicting state remains explicitly unknown or conflicting until evidence resolves it.
+
+## Continuity rule
+
+After every meaningful engineering transition, update this file and the relevant current checkpoint. Historical checkpoints remain immutable records of their time and are not retroactively rewritten.
