@@ -490,9 +490,26 @@ Revision rationale:
 Revision 1 introduced a competing canonical schema and unsupported TR-001 fixture classifications. Revision 2 removes those assumptions and constrains the design to evidence-supported normalization into the existing canonical contract.
 
 Review state:
-REVISE → READY FOR DESIGN REVIEW
+ACCEPTED — DESIGN GATE
+
+Design review decision:
+ACCEPT
+
+Review basis:
+- The specification targets the existing frozen Canonical Task/Intent Contract V1 rather than creating a competing schema.
+- The normalization/ATL separation is explicit and preserves ACL-001 semantic ownership.
+- TR-001 fixture claims are constrained to observed repository evidence; unsupported mappings remain UNRESOLVED.
+- Required canonical fields, identity distinctions, governance boundaries, and fail-closed behavior are preserved.
+- The design explicitly forbids weakening PR #53 or modifying TR-001 solely to satisfy normalization.
+- No implementation claim is made by this acceptance.
+
+Protected state after acceptance:
+- PR #53 remains FROZEN and unchanged.
+- TR-001 remains FROZEN and unchanged.
+- ArgCore remains untouched by this design.
+- The frozen Canonical Task/Intent Contract remains normative.
 
 Required next gate:
-DESIGN REVIEW → ACCEPT / REVISE
+IMPLEMENTATION DESIGN → REVIEW → IMPLEMENT
 
-No implementation is authorized by this document.
+Implementation is NOT authorized directly by this design acceptance. The next artifact must define the smallest implementation boundary, interfaces, provenance behavior, rejection behavior, and tests required to realize this accepted design without changing the protected artifacts.
