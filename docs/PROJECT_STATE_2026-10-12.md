@@ -16,10 +16,11 @@ Consumed constitutional dependency: @kelziejordan/argcore@1.0.0-argcore-008
 
 ## 2. Combined interruption/dependency diagnostic
 
-Draft PR: https://github.com/Kelziejordan/Arg/pull/113
-Test commit: `991c3583afc7c6aa770af02d671d581246c5906b`
+Merged PR: https://github.com/Kelziejordan/Arg/pull/113
+Consolidated test head: `b52b1ddfe40818e7d4048a3d88816d9729025f67`
+Post-merge main commit: `df792412215d22044817a9cda713ee0826d8162a`
 
-The combined controlled diagnostic completed with all three required CI workflows passing:
+The consolidated diagnostic PR merged after all three required PR-head workflows passed. Post-merge workflows are running against main; the recorded status below must not be treated as final until all post-merge checks complete:
 - Arg Orchestration CI #595: https://github.com/Kelziejordan/Arg/actions/runs/38201036855
 - ArgOS Proof Spine #163: https://github.com/Kelziejordan/Arg/actions/runs/38201036967
 - Arg B1 Denial Boundary #233: https://github.com/Kelziejordan/Arg/actions/runs/38201036973
@@ -39,9 +40,9 @@ This proves bounded replay prevention and fail-closed dependency handling, not s
 - Issue #109 — https://github.com/Kelziejordan/Arg/issues/109: reconcile canonical recovery identity, action binding, and durable cross-process single-use admission. Full recovery/resume remains NOT PROVEN.
 - Issue #90 — https://github.com/Kelziejordan/Arg/issues/90: prove dependency-aware sequential execution, human-gated continuation, and complete interrupted-workflow resume.
 - Issue #112 — https://github.com/Kelziejordan/Arg/issues/112: reconcile Memory Lifecycle V1 against active source/interfaces and prove one bounded learning cycle.
-- Draft PR #111 — https://github.com/Kelziejordan/Arg/pull/111: proposed Memory Lifecycle contract and evidence matrix. The active-source inventory has been completed for Arg, ArgCore, ArgAtlas, ArgLearn, and ArgOS-Workspace; the matrix selects a low-risk repeated task-envelope classification workload and records the existing cold baseline. The current canonical Knowledge Vault source of truth remains unresolved. Runtime memory implementation remains NOT AUTHORIZED pending review.
+- PR #111 — https://github.com/Kelziejordan/Arg/pull/111: Memory Lifecycle contract and evidence matrix merged as documentation-only commit `fb6b4c17bf53392356eb1c3a3471931093c9d656`. The active-source inventory has been completed for Arg, ArgCore, ArgAtlas, ArgLearn, and ArgOS-Workspace; the matrix selects a low-risk repeated task-envelope classification workload and records the existing cold baseline. The current canonical Knowledge Vault source of truth remains unresolved. Runtime memory implementation remains NOT AUTHORIZED pending review.
 
-No production memory behavior, ArgCore 008/R8 contract, or runtime recovery authority was changed by this checkpoint.
+The older diagnostic PRs #108 and #110 were closed as superseded after their test files were incorporated into merged PR #113; neither was merged independently. No production memory behavior, ArgCore 008/R8 contract, or runtime recovery authority was changed by these merges.
 
 ## 4. Direct repository synchronization audit
 
