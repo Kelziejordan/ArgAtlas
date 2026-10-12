@@ -20,7 +20,7 @@ Merged PR: https://github.com/Kelziejordan/Arg/pull/113
 Consolidated test head: `b52b1ddfe40818e7d4048a3d88816d9729025f67`
 Post-merge main commit: `df792412215d22044817a9cda713ee0826d8162a`
 
-The consolidated diagnostic PR merged after all three required PR-head workflows passed. Post-merge workflows are running against main; the recorded status below must not be treated as final until all post-merge checks complete:
+The consolidated diagnostic PR merged after all three required PR-head workflows passed. Post-merge verification on main commit `df792412215d22044817a9cda713ee0826d8162a` is COMPLETE: Arg Orchestration CI #600 PASS; ArgOS Proof Spine #168 PASS; Arg B1 Denial Boundary #238 PASS; ArgOS External Action Proof #139 PASS. The orchestration log on main contains the expected diagnostic outputs, including `GAP_DETECTED` for incomplete resume and `BLOCKED_BY_MISSING_TCS_CONTRACT` for durable recovery admission. These passing workflows verify the diagnostic and existing safety boundaries; they do not prove full recovery/resume.
 - Arg Orchestration CI #595: https://github.com/Kelziejordan/Arg/actions/runs/38201036855
 - ArgOS Proof Spine #163: https://github.com/Kelziejordan/Arg/actions/runs/38201036967
 - Arg B1 Denial Boundary #233: https://github.com/Kelziejordan/Arg/actions/runs/38201036973
