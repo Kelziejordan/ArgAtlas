@@ -8,6 +8,8 @@ It preserves what is known, what is evidenced, what remains uncertain, and what 
 
 The current cross-repository checkpoint is [PROJECT_STATE_2026-10-09.md](./docs/PROJECT_STATE_2026-10-09.md). It supersedes earlier status descriptions only where they conflict with verified current authority; historical checkpoints are retained as historical evidence and are not rewritten.
 
+The current PR-specific continuity addendum for ARG Companion PR #140 is [PR-140-CONTINUITY-RECONCILIATION-2026-11-09.md](./docs/PR-140-CONTINUITY-RECONCILIATION-2026-11-09.md). It records the canonical repository identity, exact PR head, inherited CI/PostgreSQL evidence, and remaining proof boundaries. It does not replace the general project-state checkpoint.
+
 Current executable ArgOS dependency: `@kelziejordan/argcore@1.0.0-argcore-008`. The R8/008 recovery/resume authority gate is closed at its bounded tested boundary and the foundation is frozen.
 
 Current next gates:
