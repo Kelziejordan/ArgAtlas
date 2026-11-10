@@ -224,3 +224,92 @@ Before the final test run, the four retrieved local source files were checked wi
 - Targeted test: `85469c6db064e7e95cdd8679caa054f35f0bc05a`
 
 The test was then executed again from this hash-verified source snapshot using `npm run test:digital-hands-memory`; both PASS messages were emitted. `node --check` also passed for all four files. The local package manifest only supplies ESM mode and the same test script; it is not a full repository package install.
+
+
+## Companion end-to-end and memory-bridge integration checkpoint — 2026-11-10
+
+Status: COMPANION BASELINE E2E PROVEN IN CI; MEMORY-BRIDGE INTEGRATION IMPLEMENTED LOCALLY AND TARGETED-TESTED; POSTGRES/PLAYWRIGHT MEMORY E2E NOT YET RUN.
+
+### Verified existing PR #140 end-to-end baseline
+
+PR #140 remains OPEN, DRAFT, UNMERGED. Its current head is:
+`1c77db8d4f94fd4c8b4ebafb378b3dc7f5a2fb69`.
+
+Fresh GitHub Actions evidence retrieved for that exact commit:
+- Arg Orchestration CI: run `42507418209`; PostgreSQL Companion E2E job `128812946968`; conclusion SUCCESS.
+- ArgOS Memory Lifecycle: run `42507418318`; memory-lifecycle job `128812947626`; conclusion SUCCESS.
+
+The PostgreSQL Companion E2E job log explicitly reports PASS for:
+- real Companion UI flow and explicit user approval;
+- real Playwright Chromium execution against the harmless Selenium test page;
+- ArgCore 008 governed lifecycle;
+- durable PostgreSQL 16 TCS evidence;
+- replay rejection;
+- separate Node process reopening PostgreSQL and verifying the evidence chain and retained screenshots.
+
+The model endpoint was mocked in CI; the browser actuator and PostgreSQL service were real. This establishes the first complete Companion execution baseline. It does not yet establish browser observation → Knowledge Vault → ArgLearn → next browser cycle on that CI commit.
+
+### Local integrated candidate
+
+Workspace: `/mnt/data/arg-fast-forward/integrated/arg-companion-memory-bridge`
+Source baseline: PR #140 head `1c77db8d4f94fd4c8b4ebafb378b3dc7f5a2fb69` plus the local Companion identity-isolation candidate.
+Workspace is writable but has no Git metadata. No remote branch, PR, push, or CI run was created for these new changes.
+
+Integrated changes:
+- Added async-compatible ArgLearn memory-cycle operations for PostgreSQL-backed TCS reads.
+- Added browser-specific memory bridge and wired it into the current Companion conversation route, rather than the older direct DigitalHands route.
+- Pre-execution learning guard runs after the orchestrator's durable execution claim and before the DigitalHands actuator call.
+- After governed execution, browser observation hash/metadata and exact TCS sequence/source-event references are captured into the durable Knowledge Vault. Raw browser page text remains in TCS and is not duplicated into the vault.
+- Only validated, governed lessons are eligible for pre-execution retrieval. ArgLearn cannot promote lessons.
+- Missing, relative/ephemeral production storage, missing parent directory, or unwritable Knowledge Vault path fails closed before execution. PostgreSQL TCS requires explicit `ARGOS_KNOWLEDGE_VAULT_PATH` unless a file TCS path provides the configured fallback.
+- Post-execution capture failure reports `CAPTURE_FAILED` and `retrySafe: false`; the completed browser action is not replayed.
+- Updated the existing learning-enabled orchestrator to inspect both top-level and intent-only payloads and to honor the typed `NONEMPTY_ARRAY` effect condition. The repeat-task regression test exposed this exact defect; the targeted repair now passes its negative and positive controls.
+- Extended the existing conversation bridge test to cover browser observation capture and a validated lesson blocking the next browser invocation.
+- Extended `companion-postgres-e2e.mjs` to cover actual PostgreSQL TCS → Knowledge Vault persistence → ArgLearn candidate → explicit validation/promotion → next-cycle block before the real Playwright actuator, plus fresh-process Knowledge Vault reopen.
+- Added and registered `test:digital-hands-memory` and `test:arglearn-memory-repeat-task-effect` in the test suite.
+
+### Local verification
+
+Exact private package source was assembled from pinned GitHub source and blob-hash checked:
+- ArgCore 008 release commit `b71f2379ad370115db261d607ea611787b6aaed5`; package metadata and all seven imported runtime/state source files match their Git blob hashes.
+- ArgLearn pin `d129803e6ef09920c47b8a3d8550e84bb97c1ff7`; package metadata, entrypoint, and engine source match their Git blob hashes.
+- This is exact-source local assembly, not an npm registry installation. The container cannot reach npm/GitHub package registries.
+
+Executed in the integrated local workspace:
+- `tests/arglearn-memory-lifecycle.mjs`: PASS.
+- `tests/arglearn-memory-runtime-proof.mjs`: PASS; real ArgOS orchestrator + ArgCore 008 adapter + durable local TCS/Knowledge Vault, controlled provider.
+- `tests/arglearn-memory-repeat-task-effect.mjs`: PASS after the demonstrated intent-only payload / typed-condition repair; cold provider call 1, warm provider calls 0, valid empty-list positive control provider calls 1.
+- `tests/conversation-bridge-contract.mjs`: PASS; actual conversation route, file-backed TCS, browser output capture, and next-cycle validated lesson block.
+- `tests/digital-hands-memory-continuity.mjs`: PASS; actual pinned ArgLearn engine, async TCS test adapter, durable Knowledge Vault journal, reopen, exact evidence references, and next-cycle block.
+- `tests/companion-identity-isolation.mjs`: PASS.
+- `tests/companion-provider-registry.mjs`: PASS.
+- `node --check`: PASS for the eight changed/new JavaScript source and test files.
+
+Not run locally:
+- `tests/companion-postgres-e2e.mjs`: requires `pg`, Playwright/Chromium, and disposable PostgreSQL; the test is extended but not executed in this workspace.
+- `tests/companion-arg-bootstrap.mjs`: local run blocked by missing public `canonicalize` dependency; npm registry access is unavailable.
+- CI for the integrated candidate: NOT RUN.
+- Production Knowledge Vault mount/path: NOT VERIFIED.
+
+### Infrastructure and protected boundaries
+
+Read-only Neon inspection found project `argos-companion-preview` and ready non-default branch `pr140-integration-2026-11-09`. Its TCS schema exists and it currently contains 32 journal events and 3 execution claims. No writes were made; it is not an empty disposable database and was not used for testing. The existing CI workflow provisions disposable PostgreSQL 16, so the integrated candidate should be verified there rather than mutating the populated Neon branch.
+
+Read-only Vercel project metadata did not expose `previewDeploymentsDisabled`. No Vercel configuration or deployment was changed. Existing PR #140 evidence records automatic Preview creation from branch pushes. Therefore a push/PR for this integrated candidate may create another Vercel Preview.
+
+No merge, production deployment, ArgCore 008 change, ACL-001 change, PR #140 change, or database write was performed.
+
+### Next decision / smallest remaining gate
+
+The integrated candidate is locally targeted-tested. The remaining proof is to run the extended real PostgreSQL/Playwright E2E and full CI on the integrated candidate. The existing GitHub Actions workflows already have the package-access secrets and disposable PostgreSQL service; no new package or database credentials should be required.
+
+However, triggering those workflows requires a remote branch push / draft PR, which may automatically create a Vercel Preview. Vercel Preview-disable state is not verified and its configuration remains frozen. Do not push or open a PR until the operator explicitly authorizes that Preview side effect or an approved method to suppress it is established.
+
+Next checkpoint:
+1. Obtain explicit authorization for one integrated-candidate draft PR/branch push knowing it may create a Vercel Preview, or an approved Preview-suppression mechanism.
+2. Run the existing Arg Orchestration CI and ArgOS Memory Lifecycle workflows on the exact integrated candidate.
+3. Verify the extended PostgreSQL/Playwright/fresh-process Knowledge Vault E2E result and inspect CI logs/artifacts.
+4. Verify production `ARGOS_KNOWLEDGE_VAULT_PATH` and durable mounted storage read-only; do not change deployment configuration.
+5. Keep PR #140 draft/unmerged and production deployment frozen until separate approval.
+
+Status: IN PROGRESS. First Companion E2E baseline is CI-proven. The integrated memory-bridge candidate passes targeted local tests; the full PostgreSQL/Playwright memory-continuity E2E remains unverified pending CI authorization.
