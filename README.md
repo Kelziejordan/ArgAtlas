@@ -1,8 +1,14 @@
 # ArgAtlas
 
+> Repository role: see [`REPOSITORY_ROLE.md`](./REPOSITORY_ROLE.md). ArgAtlas is the engineering continuity and provenance authority, not a runtime dependency.
+
 ArgAtlas is the engineering continuity, provenance, canonical lifecycle, and architectural-memory authority for the Arg ecosystem.
 
 It preserves what is known, what is evidenced, what remains uncertain, and what must be proven before an implementation or claim is promoted.
+
+## Runtime memory distinction
+
+ArgAtlas owns engineering memory: canonical architecture, project history, provenance, evidence classification, decisions, and continuity. It does not own the runtime Knowledge Vault and is not imported by Arg as a runtime package. In the executable lifecycle, TCS records runtime events, Arg's Knowledge Vault persists episodic observations and governed reusable lessons, and ArgLearn analyzes evidence under ArgCore-governed boundaries.
 
 ## Current project state
 
