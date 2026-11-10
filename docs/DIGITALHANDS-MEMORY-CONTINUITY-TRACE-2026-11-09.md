@@ -108,3 +108,53 @@ Before coding, inspect the relevant existing tests and Knowledge Vault storage c
 Next checkpoint: inspect current tests and Knowledge Vault storage/configuration, then implement the smallest async-compatible DigitalHands-to-memory bridge and targeted tests if the existing contract confirms the boundary.
 
 Status: IN PROGRESS.
+
+
+## Follow-up implementation — 2026-11-09
+
+Status: IMPLEMENTED ON ISOLATED ARG BRANCH; TARGETED TEST AUTHORED; EXECUTION UNVERIFIED.
+
+Implementation branch: `Kelziejordan/Arg:integration/digitalhands-memory-bridge-2026-11-09`
+Head commit: `81b719e35287f6ab92e13e36d3728f954db807d0`
+Base: `main` at `9158fdec5f7cad33727b443dcb110ed958b8ab6f`
+Comparison: 2 commits ahead, 0 behind.
+
+Changed files:
+- `src/learning/arglearn-memory-cycle.js`: additive `captureObservedRunAsync` and `recordLessonUseAsync`; synchronous APIs retained for existing callers.
+- `src/digital-hands/browser-memory-bridge.js`: new browser-specific async bridge. It captures post-execution TCS references into a durable episodic Knowledge Vault observation; before a later browser execution, it retrieves only validated lessons with the existing `ARGOS_PRE_EXECUTION_GUARD_V1` consumption contract and applies only the existing typed `REJECT_IF_PAYLOAD_FIELD_PRESENT_V1` effect.
+- `api/conversation.js`: browser route now initializes the existing ArgLearn/Knowledge Vault integration, uses the same correlation identity, records learning consumption before any browser invocation, and captures the result after TCS append.
+- `tests/digital-hands-memory-continuity.mjs`: targeted test for async TCS read/write, persisted Knowledge Vault evidence references, restart/reopen, missing-evidence refusal, and validated lesson consumption before the next browser invocation.
+- `package.json`: adds `test:digital-hands-memory`.
+
+Storage boundary:
+- Browser execution requires a durable Knowledge Vault path from `ARGOS_KNOWLEDGE_VAULT_PATH`, or the established `ARGOS_EXECUTION_TCS_PATH` plus `.knowledge-vault.jsonl` suffix.
+- PostgreSQL TCS deployments without a file-backed TCS path must configure `ARGOS_KNOWLEDGE_VAULT_PATH`.
+- Outside test mode, relative and ephemeral paths are rejected. The parent directory and existing journal file must be writable before the browser executor is invoked.
+- Missing/corrupt/unwritable vault storage fails closed before the browser execution claim/provider boundary.
+- If post-execution memory capture fails, the already-completed browser action is not replayed; response reports `CAPTURE_FAILED` with `retrySafe: false`.
+
+Governance boundary:
+- No ArgCore 008, ACL-001, repository role, authority, or TCS ownership changes.
+- ArgLearn still cannot persist runtime memory or promote lessons.
+- Only validated lessons returned by the existing Knowledge Vault retrieval contract can affect a subsequent browser action.
+- No raw page text is duplicated into Knowledge Vault. The episodic memory stores browser observation hash/metadata and exact TCS sequence/source-event references; TCS remains the source for the full browser observation payload.
+
+Verification:
+- GitHub branch comparison: verified 2 ahead / 0 behind.
+- JavaScript syntax compilation (source text with module declarations stripped for parser check): PASS for all four changed/new JavaScript files.
+- Targeted test: authored and registered, NOT RUN.
+- Existing memory lifecycle/runtime/repeat-task tests: NOT RUN.
+- CI: NOT RUN. No matching automatic push workflow for this branch was invoked.
+- Runtime PostgreSQL/Knowledge Vault storage: NOT exercised.
+- Browser execution: NOT repeated.
+- No PR opened, no merge, no deployment, no Vercel changes, no database access.
+
+Execution limitation: the working container cannot resolve GitHub to clone the repository, and the GitHub connector exposes source and commit operations but no arbitrary test execution or workflow-dispatch action. Syntax compilation is not a substitute for executing the targeted test. The new implementation and test therefore remain UNVERIFIED until `npm run test:digital-hands-memory` is executed in a repository workspace with the pinned dependencies installed.
+
+Next checkpoint:
+1. Run `npm run test:digital-hands-memory`.
+2. Run existing `npm run test:arglearn-memory-lifecycle`, `npm run test:arglearn-memory-runtime-proof`, `npm run test:arglearn-memory-repeat-task-effect`, and `npm run test:conversation-bridge` as regression checks.
+3. Confirm deployed runtime has a durable writable `ARGOS_KNOWLEDGE_VAULT_PATH` when PostgreSQL TCS is selected.
+4. Do not merge or deploy without separate authorization.
+
+Status: IN PROGRESS; implementation is isolated and not CI-verified or runtime-proven.
