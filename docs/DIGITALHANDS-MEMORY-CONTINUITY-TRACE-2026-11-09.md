@@ -158,3 +158,58 @@ Next checkpoint:
 4. Do not merge or deploy without separate authorization.
 
 Status: IN PROGRESS; implementation is isolated and not CI-verified or runtime-proven.
+
+
+## Targeted verification checkpoint — 2026-11-09
+
+Status: TARGETED BRIDGE TEST PASS IN ISOLATED SOURCE SNAPSHOT; FULL REPOSITORY REGRESSION AND RUNTIME CONFIGURATION UNVERIFIED.
+
+Implementation branch: `Kelziejordan/Arg:integration/digitalhands-memory-bridge-2026-11-09`
+Implementation head: `81b719e35287f6ab92e13e36d3728f954db807d0`
+Comparison rechecked: 2 commits ahead of main, 0 behind.
+Commit status: no status checks reported. Commit workflow-run lookup returned no associated PR-triggered runs.
+
+Exact branch source retrieved from GitHub and assembled in an isolated local test directory:
+- `src/memory/knowledge-vault.js` blob `bcebbc924f2660cc1b157693f8a19d82cc7646ee`
+- `src/learning/arglearn-memory-cycle.js` blob `62b17137340096ceef704cbde092b72aa7f0f1a1`
+- `src/digital-hands/browser-memory-bridge.js` blob `186ac9484b48e00b88ebde0eb7175214db8e88c4`
+- `tests/digital-hands-memory-continuity.mjs` blob `85469c6db064e7e95cdd8679caa054f35f0bc05a`
+
+Execution:
+- Command: `node tests/digital-hands-memory-continuity.mjs`
+- Runtime: Node v22.16.0.
+- Result: PASS.
+- Assertions exercised: async TCS-style read; browser observation capture into Knowledge Vault; exact TCS evidence references; journal reopen/recovery; refusal when TCS evidence is absent; validated lesson retrieval; TCS learning-consumption event; lesson-use evaluation; pre-execution block; no-match behavior.
+- Both test success messages emitted.
+- This is a real execution of the exact committed test and exact retrieved module sources, but in an isolated minimal snapshot with `package.json` set to ESM. It is not a full Arg checkout.
+- The test uses an asynchronous in-memory TCS mock and a stub ArgLearn engine. It does not connect to PostgreSQL or load the pinned ArgLearn package.
+
+Storage configuration source review:
+- TCS selects PostgreSQL when `ARGOS_TCS_DATABASE_URL` is configured; otherwise the file TCS path `ARGOS_EXECUTION_TCS_PATH` is required.
+- Knowledge Vault uses `ARGOS_KNOWLEDGE_VAULT_PATH`, falling back to `ARGOS_EXECUTION_TCS_PATH` plus `.knowledge-vault.jsonl`.
+- Therefore PostgreSQL TCS without a file TCS path requires an explicit `ARGOS_KNOWLEDGE_VAULT_PATH`.
+- Outside test mode the vault path must be absolute and non-ephemeral; its parent directory must already exist and be writable, and an existing journal must be writable. The route does not provision a missing parent directory.
+- Actual deployment environment values, mounted-volume durability, and PostgreSQL connectivity were not inspected. No Vercel environment/configuration read or write was performed.
+
+Remaining verification:
+- `npm run test:arglearn-memory-lifecycle`: NOT RUN.
+- `npm run test:arglearn-memory-runtime-proof`: NOT RUN.
+- `npm run test:arglearn-memory-repeat-task-effect`: NOT RUN.
+- `npm run test:conversation-bridge`: NOT RUN.
+- Full-repository `npm run test:digital-hands-memory`: NOT RUN from a full checkout; the exact test passed in the isolated snapshot described above.
+- CI: NOT VERIFIED; no workflow run was found for this commit.
+- Live PostgreSQL, production storage path, and route-level execution: NOT VERIFIED.
+- No browser execution repeated; no PR opened; no merge, deployment, Vercel change, or database access.
+
+Workspace constraint:
+- The working container has Node v22.16.0 and npm 10.9.2 but no Arg repository checkout. GitHub hostname resolution failed from the container.
+- The GitHub connector provides source/commit/status retrieval but no workflow-dispatch or arbitrary repository test-run action.
+- No cloud sandbox was provisioned because cloud spending and Vercel infrastructure remain frozen.
+
+Next checkpoint:
+1. Obtain an authorized full Arg repository workspace with the exact branch head and pinned dependencies.
+2. Run the four outstanding regression tests listed above, plus the targeted test from that full checkout.
+3. Verify the runtime Knowledge Vault path and mounted storage without changing Vercel configuration or deploying.
+4. Fix only demonstrated blockers, maximum two repair passes. Keep branch isolated; do not open/merge a PR or deploy without separate authorization.
+
+Status: IN PROGRESS. Targeted test PASS in isolated exact-source snapshot; full regression, CI, PostgreSQL and deployed storage remain UNVERIFIED.
