@@ -213,3 +213,14 @@ Next checkpoint:
 4. Fix only demonstrated blockers, maximum two repair passes. Keep branch isolated; do not open/merge a PR or deploy without separate authorization.
 
 Status: IN PROGRESS. Targeted test PASS in isolated exact-source snapshot; full regression, CI, PostgreSQL and deployed storage remain UNVERIFIED.
+
+
+### Test source-integrity confirmation
+
+Before the final test run, the four retrieved local source files were checked with Git's blob-hash algorithm against their GitHub blob SHAs. All four matched exactly:
+- Knowledge Vault: `bcebbc924f2660cc1b157693f8a19d82cc7646ee`
+- Async memory cycle: `62b17137340096ceef704cbde092b72aa7f0f1a1`
+- Browser memory bridge: `186ac9484b48e00b88ebde0eb7175214db8e88c4`
+- Targeted test: `85469c6db064e7e95cdd8679caa054f35f0bc05a`
+
+The test was then executed again from this hash-verified source snapshot using `npm run test:digital-hands-memory`; both PASS messages were emitted. `node --check` also passed for all four files. The local package manifest only supplies ESM mode and the same test script; it is not a full repository package install.
