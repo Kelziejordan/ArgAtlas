@@ -57,15 +57,41 @@ A commit, PR, successful test, or deployment proves only its actual scope. CONNE
 
 Do not overwrite historical records to make them agree with current status. Publish a new dated checkpoint that explicitly supersedes older status where necessary.
 
-## 3A. Review and authorization policy
+## 3A. Independent review, AI cross-audit, and authorization policy
 
-Independent human review is OPTIONAL, not a mandatory project, repository, pull-request, release, or engineering gate. ARG must not require a second human reviewer where none is available. The absence of an external reviewer does not by itself block progress or merge readiness.
+Independent human review is OPTIONAL, not a mandatory project, repository, pull-request, release, or engineering gate. ARG must not require a second human reviewer where none is available. A qualified human reviewer may be added when genuinely available or required by an external obligation, but human availability is not a default project dependency.
 
-Use available automated review, risk-based engineering inspection, source verification, and relevant tests/CI as appropriate to the change. Record which checks actually ran and their results; do not represent automated review as independent human review or treat an unavailable check as passing.
+**Independent second-AI audit is the standard second-opinion control for important decisions.** The AI that authors, proposes, or implements consequential work must not be its sole evaluator. Before an important decision is accepted, obtain an independent audit from a second AI model/agent that is not simply asked to endorse the first AI's conclusion.
 
-Human review may be added when a qualified reviewer is genuinely available or when a specific external obligation requires it. It is an optional additional assurance layer, not a default dependency.
+### When a second-AI audit is required
 
-This policy does not remove operator authorization. Explicit authorization remains required for protected actions, including protected merges when designated by the operator, production changes, destructive or irreversible operations, security-sensitive changes, secrets, and material billing. Authorization by the responsible operator is distinct from independent review; one does not imply the other.
+Require a second-AI audit before acceptance of decisions or changes materially affecting:
+- Architecture, system boundaries, constitutional/governance rules, or authority.
+- Identity, authentication, authorization, secrets, or security controls.
+- Durable state, TCS, memory/knowledge lifecycle, integrity, backup, or recovery.
+- Data retention, deletion, migrations, or irreversible state transitions.
+- External side effects, financial actions, payments, billing, or material resource commitments.
+- Production readiness, deployment, or release acceptance.
+- Public-facing safety, privacy, or compliance claims.
+- Any decision explicitly designated high-risk or consequential by the operator.
+
+Routine, low-risk, reversible work does not require a second-AI audit by default. Apply proportionate engineering inspection and tests instead.
+
+### Auditor independence and method
+
+1. Prefer a second model from a different provider or model family. A distinct model/version from the same provider is acceptable when that is the available option, but record that its independence is weaker.
+2. Give the auditor the decision question, relevant context, exact proposed change or artifact, acceptance criteria, source/evidence references, known assumptions, and failure scenarios.
+3. Ask it to assess the matter independently: identify unsupported claims, missing evidence, alternative explanations, edge cases, security/safety risks, and reasons to reject or defer. Do not frame the request as confirmation of the first AI's answer.
+4. Record the auditor/provider and model identifier when available, date, audited commit/artifact, scope, findings, and disposition in ArgAtlas.
+5. Classify findings by severity and evidence. Resolve or explicitly disposition material disagreements before acceptance. The originating AI must not silently dismiss a second auditor's objection.
+6. If no second AI auditor is available, record the audit as UNVERIFIED and defer acceptance of the consequential decision unless the operator explicitly accepts the documented risk. Do not claim an audit occurred when it did not.
+
+A second-AI audit is an independent technical opinion, not proof of correctness, a human reviewer, professional certification, or an authorization token. Multiple AI systems can share blind spots or produce correlated errors; model/provider diversity reduces but does not eliminate that risk.
+
+### Operator authority remains separate
+
+The second AI auditor advises and challenges; it does not approve execution, merge protected changes, grant permissions, or override the operator. Explicit operator authorization remains required for protected actions, including protected merges when designated by the operator, production changes, destructive or irreversible operations, security-sensitive changes, secrets, and material billing. Authorization and independent audit are separate controls; neither substitutes for the other.
+
 
 ## 4. Canonical information boundaries
 
