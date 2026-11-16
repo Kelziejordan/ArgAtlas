@@ -114,21 +114,29 @@ Automatic triggers such as application close, conversation X, ten-minute inactiv
 
 ## 7. Current active execution
 
-Master completion register: existing G1-G10 Minimum Operational Completion Gates register dated 2026-11-16. Do not create a competing master checklist.
+Controlling working register: `ARG_Minimum_Operational_Completion_Gates_2026-11-16.csv` (the current working Library artifact). It remains the sole G1-G10 master register; it has not yet been imported into the ArgAtlas repository. Do not create a competing checklist. Import/reconcile this same register as a separate continuity-record task.
 
 Sole active technical workstream: G2 — shared TCS persistence/adapter boundary.
 
-Current known source baseline: Kelziejordan/Arg main 9158fdec5f7cad33727b443dcb110ed958b8ab6f (must be rechecked before source changes).
+Current source-trace baseline: `Kelziejordan/Arg@9158fdec5f7cad33727b443dcb110ed958b8ab6f`. This is the recorded source-trace commit, not an assertion that it remains the latest Arg main. Recheck branch/head before any source change.
 
 Key TCS findings to carry forward:
-- api/execute.js selects JSONL TCS and ignores ARGOS_TCS_DATABASE_URL.
-- api/conversation.js selects PostgreSQL only when ARGOS_TCS_DATABASE_URL is configured; otherwise it uses JSONL.
-- The two routes therefore have divergent adapter selection.
-- TCS and Knowledge Vault journals are distinct and must remain distinct.
-- The conversation route does not itself instantiate the Knowledge Vault/ArgLearn memory cycle.
-- Preview database observations are not production proof.
+- `api/execute.js` selects JSONL TCS via `createTraceChronicle({ storagePath })` and does not read `ARGOS_TCS_DATABASE_URL`.
+- `api/conversation.js` selects PostgreSQL when `ARGOS_TCS_DATABASE_URL` is set; otherwise it requires `ARGOS_EXECUTION_TCS_PATH` and selects JSONL. PostgreSQL configuration is fail-closed rather than silently falling back.
+- The two routes therefore have divergent adapter-selection contracts.
+- `api/execute.js` initializes a separate Knowledge Vault journal at `${storagePath}.knowledge-vault.jsonl`; TCS and Knowledge Vault journals must remain distinct.
+- `api/conversation.js` does not instantiate the Knowledge Vault or ArgLearn memory cycle; Companion TCS events are not automatically ingested by that handler.
+- Preview database observations are bounded integration-fixture evidence, not production proof.
 - Vercel is intentionally guarded and is not the target runtime for this work; do not reopen Vercel investigations absent a specific acceptance requirement.
 - No production target, production activation, or deployment is authorized by this protocol.
+
+Source provenance for the route-selection and journal-boundary findings:
+- `api/execute.js` at the source-trace commit; blob `cbff226ccef10f5f5846a5aa837354dd70cea1c9`.
+- `api/conversation.js` at the source-trace commit; blob `0234873d24b7fc95f88a22f3445dda50308168f3`.
+- `src/tcs/trace-chronicle.js` at the source-trace commit; blob `eda00e49c7d0f1ee871ebf890fa0a7e6dd37981b`.
+- `src/memory/knowledge-vault.js` at the source-trace commit; blob `bcebbc924f2660cc1b157693f8a19d82cc7646ee`.
+
+The detailed G2 findings ledger `ARG_TCS_Runtime_Findings_2026-11-16.csv` is currently a working Library artifact and has not yet been imported into ArgAtlas. Its TCS-01/TCS-02 source claims are corroborated by the exact source files above. Its environment and database observations retain their individual evidence classes and must not be promoted to production proof.
 
 Next action: reconcile the latest Arg main/working branch and tests, then design the smallest shared TCS factory change on an authorized non-main work branch. Preserve ArgCore 008, architecture, PR #140 draft/unmerged status, production, and ARG-X separation.
 
