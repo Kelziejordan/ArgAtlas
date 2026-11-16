@@ -21,7 +21,13 @@ Activate ArgAtlas as the continuously maintained engineering continuity record i
 7. Degradation must not equate usefulness with popularity. Low-frequency, minority, novel, contradictory, and potentially high-consequence signals must be retained as candidates and assessed on evidence, novelty, consequence, corroboration, reproducibility, and provenance. Popularity is one input, never the deciding vote.
 8. Historical weighted event scores are not validated thresholds. No destructive retention/deletion policy is authorized.
 9. The eventual goal is for ARG to enforce this discipline itself, but that capability is not currently proven.
-10. Independent human review is optional, never a mandatory project/repository/PR/release gate. Automated review, engineering inspection and tests are used according to risk and actual availability. No absent reviewer is invented or treated as a blocker. Operator authorization remains mandatory for protected actions and is distinct from independent review.
+10. Independent human review is optional, never a mandatory project/repository/PR/release gate. For important or consequential decisions, require an independent second-AI audit before acceptance; prefer a different provider/model family, record the audited artifact/model/findings/disposition, and resolve material disagreements. If no second auditor is available, mark the audit UNVERIFIED and defer acceptance unless the operator explicitly accepts the documented risk. Routine low-risk reversible work uses proportionate verification. The second AI advises but does not authorize. Operator authorization remains mandatory for protected actions and is distinct from audit.
+
+## Review policy decision — independent AI cross-audit
+
+The operating policy now distinguishes ordinary verification from an independent second opinion. Important/consequential decisions require a second-AI audit before acceptance; independent human review is optional and is not a default dependency. Prefer a different provider or model family, but record when only a same-provider/different-version auditor is available. The auditor must receive the actual decision, acceptance criteria, source/evidence and failure scenarios, and must challenge rather than merely endorse the originating AI's work. Record model/provider, date, exact commit/artifact, scope, findings and disposition. Unavailable audit means UNVERIFIED; defer acceptance unless the operator explicitly accepts the documented risk. The auditor does not grant execution or merge authority.
+
+This policy was adopted by the operator in this session and is being added to the controlling protocol. The current PR's earlier Codex review completed against `001b8442f216afec7bb15beb1608d7dd8576b576` with no findings; that review predates this policy addition and does not audit the new text. A fresh Codex audit is to be requested against the updated head.
 
 ## Automation limitation — explicitly not claimed
 
