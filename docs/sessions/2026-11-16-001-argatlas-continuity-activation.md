@@ -21,6 +21,7 @@ Activate ArgAtlas as the continuously maintained engineering continuity record i
 7. Degradation must not equate usefulness with popularity. Low-frequency, minority, novel, contradictory, and potentially high-consequence signals must be retained as candidates and assessed on evidence, novelty, consequence, corroboration, reproducibility, and provenance. Popularity is one input, never the deciding vote.
 8. Historical weighted event scores are not validated thresholds. No destructive retention/deletion policy is authorized.
 9. The eventual goal is for ARG to enforce this discipline itself, but that capability is not currently proven.
+10. Independent human review is optional, never a mandatory project/repository/PR/release gate. Automated review, engineering inspection and tests are used according to risk and actual availability. No absent reviewer is invented or treated as a blocker. Operator authorization remains mandatory for protected actions and is distinct from independent review.
 
 ## Automation limitation — explicitly not claimed
 
@@ -82,8 +83,8 @@ The sole G1-G10 register is `ARG_Minimum_Operational_Completion_Gates_2026-11-16
 - Original session-record blob before this correction: `73b66fd5bfc2ad0eb67aafb019c2e97a695df48b`.
 - PR #4: [Establish mandatory ArgAtlas continuity protocol v1](https://github.com/Kelziejordan/ArgAtlas/pull/4).
 - After the documentation/evidence reconciliation, PR #4 was marked READY FOR REVIEW at head `91ce664fdba2b6a2a079c79a61d4d6ba95d868c3`; it remains OPEN and UNMERGED.
-- No CODEOWNERS file was found at the standard repository paths, and no reviewer identity was supplied; no reviewer request was fabricated or sent. A named reviewer request remains pending.
-- The PR metadata reports `mergeable: true` after the ready-for-review transition. No review submissions, PR-triggered workflow runs, or commit statuses were reported at the final pre-closeout check; this is not a passing CI result.
+- No CODEOWNERS file was found at the standard repository paths. Independent human review is now explicitly optional and is not a merge or project gate. No external reviewer is expected or required.
+- PR metadata reports `mergeable: true`. Automated Codex review completed against final head `c511214bbea55552238f334ec08f49f48947a45b` and reported one P2 finding: the older `MASTER_PROJECT_STATE.md` checkpoint conflicts with the later G2 gate decision. This finding is being addressed in this branch by explicitly recording checkpoint supersession. No workflow runs or commit statuses were reported; this is not a passing CI result.
 - PR #4 at the start of this review reconciliation: OPEN, DRAFT, UNMERGED; base `main` at `aa5e771c146472de1876773c8f46cd3ee2f99547`; head branch `ops/argatlas-continuity-v1-2026-11-16`; head commit `40327558f849576a616c3f46934512f5b949ce87`; 2 commits, 2 changed files, 241 additions, 0 deletions.
 - Changed-file review confirmed the intended documentation-only scope: the continuity protocol and this session record only.
 - At that PR snapshot, no review submissions were present, no PR-triggered workflow runs were returned, and the head commit had no reported commit statuses. These are NO CHECKS REPORTED, not passing checks.
@@ -93,7 +94,7 @@ The sole G1-G10 register is `ARG_Minimum_Operational_Completion_Gates_2026-11-16
 ## Next actions
 
 1. Verify the updated session record, final branch head, and two-file PR diff after this reconciliation commit.
-2. PR #4 is ready for review. Request a named reviewer once the reviewer handle is supplied; wait for human review and any required checks. Do not merge without review and explicit authorization.
+2. PR #4 has no mandatory human-review dependency. Use automated review and risk-based engineering verification where available; human review is optional. Do not treat missing CI/status reports as passing checks. Merge authorization remains with the operator.
 3. Import/reconcile the existing G1-G10 register and TCS findings ledger into ArgAtlas working records as a separate continuity task, without creating competing master records.
 4. Continue G2 only: inspect current Arg source branch/tests, then implement the smallest shared TCS factory boundary on an authorized non-main work branch.
 5. Add a verified always-on continuity mechanism to the engineering roadmap as a future capability; do not claim it exists yet.
