@@ -97,6 +97,15 @@ The sole G1-G10 register is `ARG_Minimum_Operational_Completion_Gates_2026-11-16
 - No runtime test or CI pass is claimed for this documentation-only PR.
 - Original Arg runtime, ArgCore 008, PR #140, production, databases, secrets, deployments, and ARG-X repositories were not changed.
 
+### Review-policy implementation evidence
+
+- Updated controlling protocol at commit `f3feb7ed36896a374de6fd8d5372e76948ff1114`; protocol blob `722fcd39cdf5091d3e106b979edd94c5059955c8`.
+- Recorded this operator decision in the session record; session blob at the time of this update: `f54df407c6e2cd5788b4c93fb237e5fe3446e882`.
+- PR #4 description now states the second-AI cross-audit policy and preserves operator authorization as a separate control.
+- Codex review of prior head `001b8442f216afec7bb15beb1608d7dd8576b576` completed with no findings. It predates the new cross-audit policy and is not evidence that the new policy text has been audited.
+- A fresh Codex audit was requested against head `6990fbb66cad8212798478e9faddd09fcd561f23`; no response had appeared at the time of this checkpoint. This is PENDING, not passed.
+- No CI workflow runs or commit statuses were reported for the policy-update head. No CI pass is claimed.
+
 ## Next actions
 
 1. Verify the updated session record, final branch head, and two-file PR diff after this reconciliation commit.
