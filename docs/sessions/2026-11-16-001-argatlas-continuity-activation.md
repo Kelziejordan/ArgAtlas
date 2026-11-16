@@ -1,6 +1,6 @@
 # Engineering Session — 2026-11-16 — ArgAtlas Continuity Activation
 
-Status: RECORDED IN ARGATLAS BRANCH; PR #4 OPEN AS DRAFT
+Status: RECORDED IN ARGATLAS BRANCH; PR #4 OPEN — READY FOR REVIEW
 Session type: Engineering governance / continuity
 Active gate: G2 — TCS shared persistence/adapter boundary
 Architecture: FROZEN
@@ -81,6 +81,9 @@ The sole G1-G10 register is `ARG_Minimum_Operational_Completion_Gates_2026-11-16
 - Verified protocol file blob after evidence-reference reconciliation: `d4407cb4ad475958810b0c09d3629ae8fe18b76d`.
 - Original session-record blob before this correction: `73b66fd5bfc2ad0eb67aafb019c2e97a695df48b`.
 - PR #4: [Establish mandatory ArgAtlas continuity protocol v1](https://github.com/Kelziejordan/ArgAtlas/pull/4).
+- After the documentation/evidence reconciliation, PR #4 was marked READY FOR REVIEW at head `91ce664fdba2b6a2a079c79a61d4d6ba95d868c3`; it remains OPEN and UNMERGED.
+- No CODEOWNERS file was found at the standard repository paths, and no reviewer identity was supplied; no reviewer request was fabricated or sent. A named reviewer request remains pending.
+- The PR metadata reports `mergeable: true` after the ready-for-review transition. No review submissions, PR-triggered workflow runs, or commit statuses were reported at the final pre-closeout check; this is not a passing CI result.
 - PR #4 at the start of this review reconciliation: OPEN, DRAFT, UNMERGED; base `main` at `aa5e771c146472de1876773c8f46cd3ee2f99547`; head branch `ops/argatlas-continuity-v1-2026-11-16`; head commit `40327558f849576a616c3f46934512f5b949ce87`; 2 commits, 2 changed files, 241 additions, 0 deletions.
 - Changed-file review confirmed the intended documentation-only scope: the continuity protocol and this session record only.
 - At that PR snapshot, no review submissions were present, no PR-triggered workflow runs were returned, and the head commit had no reported commit statuses. These are NO CHECKS REPORTED, not passing checks.
@@ -90,11 +93,11 @@ The sole G1-G10 register is `ARG_Minimum_Operational_Completion_Gates_2026-11-16
 ## Next actions
 
 1. Verify the updated session record, final branch head, and two-file PR diff after this reconciliation commit.
-2. Keep PR #4 unmerged until a human review and any required checks are complete. Mark ready/request a reviewer only after the documentation and evidence review is complete; no reviewer identity is assumed.
+2. PR #4 is ready for review. Request a named reviewer once the reviewer handle is supplied; wait for human review and any required checks. Do not merge without review and explicit authorization.
 3. Import/reconcile the existing G1-G10 register and TCS findings ledger into ArgAtlas working records as a separate continuity task, without creating competing master records.
 4. Continue G2 only: inspect current Arg source branch/tests, then implement the smallest shared TCS factory boundary on an authorized non-main work branch.
 5. Add a verified always-on continuity mechanism to the engineering roadmap as a future capability; do not claim it exists yet.
 
 ## Disposition
 
-IN PROGRESS — ArgAtlas continuity protocol activated in a documentation branch; PR #4 remains open as draft. Source-level G2 findings are supported at the recorded Arg commit. The G1-G10 and TCS findings CSVs remain working Library artifacts pending import. Automatic app-close/inactivity capture is not implemented. G2 remains the sole active technical workstream.
+IN PROGRESS — ArgAtlas continuity protocol activated in a documentation branch; PR #4 is open and ready for review, unmerged. Source-level G2 findings are supported at the recorded Arg commit. The G1-G10 and TCS findings CSVs remain working Library artifacts pending import. Automatic app-close/inactivity capture is not implemented. G2 remains the sole active technical workstream.
