@@ -57,6 +57,16 @@ A commit, PR, successful test, or deployment proves only its actual scope. CONNE
 
 Do not overwrite historical records to make them agree with current status. Publish a new dated checkpoint that explicitly supersedes older status where necessary.
 
+## 3A. Review and authorization policy
+
+Independent human review is OPTIONAL, not a mandatory project, repository, pull-request, release, or engineering gate. ARG must not require a second human reviewer where none is available. The absence of an external reviewer does not by itself block progress or merge readiness.
+
+Use available automated review, risk-based engineering inspection, source verification, and relevant tests/CI as appropriate to the change. Record which checks actually ran and their results; do not represent automated review as independent human review or treat an unavailable check as passing.
+
+Human review may be added when a qualified reviewer is genuinely available or when a specific external obligation requires it. It is an optional additional assurance layer, not a default dependency.
+
+This policy does not remove operator authorization. Explicit authorization remains required for protected actions, including protected merges when designated by the operator, production changes, destructive or irreversible operations, security-sensitive changes, secrets, and material billing. Authorization by the responsible operator is distinct from independent review; one does not imply the other.
+
 ## 4. Canonical information boundaries
 
 - ArgAtlas: engineering continuity, decisions, provenance, gate status, and resumption state.
@@ -115,6 +125,8 @@ Automatic triggers such as application close, conversation X, ten-minute inactiv
 ## 7. Current active execution
 
 Controlling working register: `ARG_Minimum_Operational_Completion_Gates_2026-11-16.csv` (the current working Library artifact). It remains the sole G1-G10 master register; it has not yet been imported into the ArgAtlas repository. Do not create a competing checklist. Import/reconcile this same register as a separate continuity-record task.
+
+**Checkpoint supersession:** The repository's `MASTER_PROJECT_STATE.md` on `main` is dated 2026-09-15 and still labels itself CURRENT while naming benchmark-harness implementation as the next gate. That checkpoint conflicts with the later 2026-11-16 gate reconciliation recorded here. For current operational sequencing, the 2026-11-16 G1-G10 register and this protocol supersede that older benchmark-next-gate instruction. The old file remains preserved historical state; this documentation-only change does not rewrite it. Reconcile/update the master-state file separately when its broader content is reviewed.
 
 Sole active technical workstream: G2 — shared TCS persistence/adapter boundary.
 
