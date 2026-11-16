@@ -1,6 +1,6 @@
 # Engineering Session — 2026-11-16 — ArgAtlas Continuity Activation
 
-Status: RECORDED IN ARGATLAS BRANCH; PR NOT YET OPEN
+Status: RECORDED IN ARGATLAS BRANCH; PR #4 OPEN AS DRAFT
 Session type: Engineering governance / continuity
 Active gate: G2 — TCS shared persistence/adapter boundary
 Architecture: FROZEN
@@ -44,7 +44,7 @@ These are recovered design references. Their existence in historical discussions
 
 ## Current project context
 
-- Original runtime: Kelziejordan/Arg; known main baseline from the current working record is 9158fdec5f7cad33727b443dcb110ed958b8ab6f. Recheck before source edits.
+- Original runtime: Kelziejordan/Arg; G2 source trace is pinned to commit 9158fdec5f7cad33727b443dcb110ed958b8ab6f. This is a recorded trace baseline, not an assertion that it remains the latest Arg main. Reconcile current branch/head before source changes.
 - ArgCore 008 remains frozen.
 - ArgAtlas remains the engineering continuity authority.
 - ArgLearn is analytical/proposal only.
@@ -54,43 +54,47 @@ These are recovered design references. Their existence in historical discussions
 - Vercel remains intentionally guarded and is not the active investigation target.
 - Experimental organization: ARG-Experimental with ARG-X, ArgCore-X, ArgAtlas-X, ArgLearn-X. The ArgAtlas-X source snapshot is tree-verified; the other source imports are pending/empty per the import ledger.
 
-## G2 carry-forward findings
+## G2 carry-forward findings and source support
 
-- api/execute.js selects JSONL TCS and ignores ARGOS_TCS_DATABASE_URL.
-- api/conversation.js can select PostgreSQL when the database URL exists; otherwise it selects JSONL.
-- The routes have divergent TCS adapter selection.
-- TCS and Knowledge Vault remain separate journals.
-- The conversation handler does not instantiate the Knowledge Vault/ArgLearn memory lifecycle.
-- Preview database evidence is not production proof.
-- No production runtime target has been authorized or established.
+The following route-selection and journal-boundary findings were rechecked against exact source files at Arg commit 9158fdec5f7cad33727b443dcb110ed958b8ab6f:
 
-## Work completed in this session
+- FACT — `api/execute.js` creates TCS with `createTraceChronicle({ storagePath })` and does not read `ARGOS_TCS_DATABASE_URL`. File blob: `cbff226ccef10f5f5846a5aa837354dd70cea1c9`.
+- FACT — `api/conversation.js` uses `createPostgresTcs` when `ARGOS_TCS_DATABASE_URL` is present; otherwise it requires `ARGOS_EXECUTION_TCS_PATH` and uses `createTraceChronicle`. PostgreSQL mode is explicitly fail-closed. File blob: `0234873d24b7fc95f88a22f3445dda50308168f3`.
+- FACT — `api/execute.js` creates a separate Knowledge Vault journal at `${storagePath}.knowledge-vault.jsonl`; the TCS and Knowledge Vault stores are distinct. Supporting source: `api/execute.js` above and `src/memory/knowledge-vault.js`, blob `bcebbc924f2660cc1b157693f8a19d82cc7646ee`.
+- FACT — `api/conversation.js` does not import or instantiate Knowledge Vault or the ArgLearn memory cycle. This means this handler does not itself ingest its TCS events into that memory lifecycle; it does not prove that no other integration path exists. Supporting source: `api/conversation.js` above.
+- OBSERVATION — The recorded Neon Preview integration fixture contained 5 claims and 35 TCS events; read-only chain checks found no broken parent links and the journal head matched the final event. This is Preview fixture evidence only, not production persistence proof.
+- INTERPRETATION — The two route handlers have divergent TCS adapter-selection contracts. The smallest candidate correction remains a shared TCS factory, subject to current-source reconciliation and tests.
+- UNVERIFIED — Production TCS target, production persistence/restart behavior, and production deployment are not established by these findings.
+
+The source-trace baseline and file blob identities are evidence references, not proof of current-main status. Recheck before implementation. The detailed ledger `ARG_TCS_Runtime_Findings_2026-11-16.csv` remains a working Library artifact and has not yet been imported into ArgAtlas.
+
+## Master completion register status
+
+The sole G1-G10 register is `ARG_Minimum_Operational_Completion_Gates_2026-11-16.csv`, currently held as a working Library artifact. It has not yet been imported into the ArgAtlas repository. No competing checklist is to be created. Import/reconcile this same register as a separate continuity-record task; until then, do not describe it as repository-persisted.
+
+## Work completed and verification
 
 - Retrieved prior ArgAtlas continuity and degradation design context.
-- Reconciled original ArgAtlas repository identity and current main commit from the available GitHub source.
-- Created branch ops/argatlas-continuity-v1-2026-11-16 from ArgAtlas main.
-- Added this operating protocol and this session record to that branch.
-
-## Verification and limitations
-
-- Branch creation: completed.
-- Documentation commits: to be verified after file writes.
-- PR: not yet created.
-- Original Arg runtime: unchanged.
-- ArgCore 008: unchanged.
-- PR #140: unchanged.
-- Production, databases, secrets, deployments: untouched.
-- ARG-X repositories: untouched.
-- No runtime automation has been implemented or tested.
+- Reconciled original ArgAtlas repository identity and main baseline `aa5e771c146472de1876773c8f46cd3ee2f99547`.
+- Created branch `ops/argatlas-continuity-v1-2026-11-16` from ArgAtlas main.
+- Added the operating protocol and this session record.
+- Verified protocol file blob after evidence-reference reconciliation: `d4407cb4ad475958810b0c09d3629ae8fe18b76d`.
+- Original session-record blob before this correction: `73b66fd5bfc2ad0eb67aafb019c2e97a695df48b`.
+- PR #4: [Establish mandatory ArgAtlas continuity protocol v1](https://github.com/Kelziejordan/ArgAtlas/pull/4).
+- PR #4 at the start of this review reconciliation: OPEN, DRAFT, UNMERGED; base `main` at `aa5e771c146472de1876773c8f46cd3ee2f99547`; head branch `ops/argatlas-continuity-v1-2026-11-16`; head commit `40327558f849576a616c3f46934512f5b949ce87`; 2 commits, 2 changed files, 241 additions, 0 deletions.
+- Changed-file review confirmed the intended documentation-only scope: the continuity protocol and this session record only.
+- At that PR snapshot, no review submissions were present, no PR-triggered workflow runs were returned, and the head commit had no reported commit statuses. These are NO CHECKS REPORTED, not passing checks.
+- No runtime test or CI pass is claimed for this documentation-only PR.
+- Original Arg runtime, ArgCore 008, PR #140, production, databases, secrets, deployments, and ARG-X repositories were not changed.
 
 ## Next actions
 
-1. Verify both documents and their commit SHAs on the ArgAtlas branch.
-2. Open a documentation-only PR for review; do not merge without approval.
-3. Reconcile the G1-G10 master register and TCS findings into the ArgAtlas working records without creating a competing checklist.
-4. Continue G2 only: inspect current Arg source branch/tests, then implement the smallest shared TCS factory boundary on an authorized work branch.
+1. Verify the updated session record, final branch head, and two-file PR diff after this reconciliation commit.
+2. Keep PR #4 unmerged until a human review and any required checks are complete. Mark ready/request a reviewer only after the documentation and evidence review is complete; no reviewer identity is assumed.
+3. Import/reconcile the existing G1-G10 register and TCS findings ledger into ArgAtlas working records as a separate continuity task, without creating competing master records.
+4. Continue G2 only: inspect current Arg source branch/tests, then implement the smallest shared TCS factory boundary on an authorized non-main work branch.
 5. Add a verified always-on continuity mechanism to the engineering roadmap as a future capability; do not claim it exists yet.
 
 ## Disposition
 
-IN PROGRESS — ArgAtlas continuity protocol activated in a documentation branch. Automatic app-close/inactivity capture is not implemented. G2 remains the sole active technical workstream.
+IN PROGRESS — ArgAtlas continuity protocol activated in a documentation branch; PR #4 remains open as draft. Source-level G2 findings are supported at the recorded Arg commit. The G1-G10 and TCS findings CSVs remain working Library artifacts pending import. Automatic app-close/inactivity capture is not implemented. G2 remains the sole active technical workstream.
