@@ -1,6 +1,6 @@
 # Engineering Session — 2026-11-16 — ArgAtlas Continuity Activation
 
-Status: RECORDED IN ARGATLAS BRANCH; PR #4 OPEN — READY FOR REVIEW
+Status: RECORDED IN ARGATLAS BRANCH; PR #4 OPEN — DRAFT; UNMERGED
 Session type: Engineering governance / continuity
 Active gate: G2 — TCS shared persistence/adapter boundary
 Architecture: FROZEN
@@ -117,3 +117,10 @@ The sole G1-G10 register is `ARG_Minimum_Operational_Completion_Gates_2026-11-16
 ## Disposition
 
 IN PROGRESS — ArgAtlas continuity protocol activated in a documentation branch; PR #4 is open and ready for review, unmerged. Source-level G2 findings are supported at the recorded Arg commit. The G1-G10 and TCS findings CSVs remain working Library artifacts pending import. Automatic app-close/inactivity capture is not implemented. G2 remains the sole active technical workstream.
+
+
+## Latest PR scope correction
+
+The 2026-11-17 ARG continuity reconciliation was initially committed to the PR #4 head branch by mistake. It was preserved separately on branch `ops/arg-continuity-reconciliation-2026-11-17`, based directly on the recorded `main` baseline. Its wording was normalized to describe the persistence/recovery requirements without referencing the separate Invoice Studio 2 project.
+
+The reconciliation file was then removed from the PR #4 head with a normal follow-up commit; no history was rewritten. PR #4 is now OPEN, DRAFT, and UNMERGED. Its changed-file set is back to the intended two documents: the continuity operating protocol and this activation session record. The PR remains documentation-only. Mergeability and review/check status must be re-evaluated after any future changes; no merge is authorized by this correction.
