@@ -125,3 +125,23 @@ The following PR housekeeping actions were completed after the 15-PR snapshot ab
 No ARG runtime PR was merged. No ARG main commit, Vercel setting, Preview/Production deployment, database, secret, or ArgCore package was changed.
 
 **Current disposition:** PR #142 remains the single Companion integration candidate, but generic `api/execute.js` governance, Preview-disable verification, and final phone acceptance remain blockers. The closed PRs remain available as historical branches and records; no work was deleted.
+
+
+## 9. CI and TCS role clarifications — 2026-11-24
+
+### CI failure root cause and repeat cost
+
+- PR #125's inspected Proof Spine failure occurred during dependency installation, before tests ran: npm attempted `git ls-remote ssh://git@github.com/Kelziejordan/ArgLearn.git` and failed with `Permission denied (publickey)`. This is an install/authentication failure, not a failing TCS assertion.
+- PR #142's current workflows configure read-only ArgLearn access and all four exact-head workflows pass. This is the current reusable CI repair evidence.
+- The inspected ARG main tree has no `package-lock.json` or other npm lockfile. Workflows use `npm install`, not `npm ci`. Dependency resolution is therefore not pinned by a committed lockfile.
+- Broad pull-request triggers run all four suites for documentation-only changes. PR #139 is an observed example: a one-file documentation PR ran all four workflows.
+
+**Smallest CI efficiency/reproducibility repair to prepare:** commit a lockfile after reconciling the pinned ArgLearn Git dependency; switch to `npm ci`; use path-aware suite selection plus an always-completing aggregate required check; centralize the same read-only ArgLearn authentication setup. Do not push this workflow repair to ARG until Vercel Preview disablement is verified.
+
+### TCS runtime role identity
+
+PR #125's additive migration grants privileges to PostgreSQL role `service_role`. The November 16 TCS findings also recorded that the Neon integration role named `argos_companion_runtime` could `SET ROLE neon_superuser`. The mapping between the Vercel connection secret and the Neon database role was intentionally not decrypted or independently verified.
+
+Therefore, the PR #125 migration must not be assumed to solve the actual runtime-role privilege issue. First verify the exact database username/role mapping through non-secret metadata or an approved secure check on the disposable integration branch. Then grant only the minimum required permissions to the verified runtime role. No role or database mutation is authorized by this finding.
+
+**Disposition:** CI root cause identified; lockfile and trigger optimization remain proposed; TCS runtime-role mapping remains UNVERIFIED.
