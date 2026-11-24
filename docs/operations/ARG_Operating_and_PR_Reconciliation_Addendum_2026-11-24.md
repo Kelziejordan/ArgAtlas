@@ -106,3 +106,22 @@ Avoid serializing the whole project behind one gate. Keep independent work movin
 - The three dated operating records were persisted to this ArgAtlas PR branch. They are committed on the branch, not merged to ArgAtlas main.
 
 **Disposition:** IN PROGRESS — operating records persisted on PR #4 branch; governance source gap identified; PR portfolio reconciled; code fixes and merges remain gated by deployment containment and exact acceptance proof.
+
+
+## 8. Post-action reconciliation — 2026-11-24
+
+The following PR housekeeping actions were completed after the 15-PR snapshot above:
+
+- ARG PR #140 closed as superseded by consolidated PR #142.
+- ARG PR #129 closed as superseded by consolidated PR #142.
+- ARG PR #126 closed as superseded by consolidated PR #142.
+- ARG PR #139 closed because this ArgAtlas addendum now carries the current PR reconciliation; the Nov 4 register remains preserved in its branch history.
+- ARG PR #136 closed because its proposed single-objective-only rule conflicts with the operator's explicit requirement to allow independent non-blocking lanes to progress in parallel. Its history is preserved; the proposed gate was not adopted.
+- ArgAtlas PR #3 (repository role declaration) merged to ArgAtlas main as documentation-only commit `a45c6aa6ed8f661ae4976c85cba74b722f28d82f`.
+- ArgAtlas PR #4 remains draft/unmerged. Its branch predates the PR #3 merge and must be reconciled with current ArgAtlas main before merge review.
+
+**Current ARG open PR count after closures:** 10 — #142, #138, #137, #128, #125, #115, #114, #121, #120, and #119.
+
+No ARG runtime PR was merged. No ARG main commit, Vercel setting, Preview/Production deployment, database, secret, or ArgCore package was changed.
+
+**Current disposition:** PR #142 remains the single Companion integration candidate, but generic `api/execute.js` governance, Preview-disable verification, and final phone acceptance remain blockers. The closed PRs remain available as historical branches and records; no work was deleted.
