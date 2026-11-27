@@ -1,7 +1,7 @@
 # Arg Ecosystem — Master Project State
 
 Status: CURRENT
-Last Updated: 2026-09-15
+Last Updated: 2026-11-26
 
 ## Identity
 
@@ -18,6 +18,8 @@ ArgLearn is the intended adaptive intelligence/economic learning layer.
 Knowledge Vault is the intended canonical knowledge substrate.
 The Multi-LLM Orchestrator is now infrastructure within the ecosystem, not the destination.
 VTM/CSRE, 7S/ARRE, Experience, DigitalHands, and application branches remain governed expansion boundaries and must be advanced only when evidence justifies them.
+
+The current active delivery gate is ARG Functional v1 persistence integration. The Governance Benchmark remains a preserved secondary track and does not displace the current completion objective.
 
 ## Current benchmark state
 
@@ -100,16 +102,39 @@ H-094 is not the current engineering gate unless evidence shows that it blocks t
 9. Benchmark workload semantics, metric denominators, evidence requirements, failure budget, and acceptance criteria are immutable for v1 once execution begins.
 10. Benchmark infrastructure must remain independently versioned and must not use ArgOS-generated scores as authoritative benchmark results.
 
+## Active delivery checkpoint — ARG Functional v1
+
+Status: CI-VERIFIED / DRAFT PR / NOT MERGED / NOT DEPLOYED
+
+The current implementation and evidence checkpoint is:
+`docs/PROJECT_STATE_2026-11-26.md`
+
+Canonical Arg repository:
+`Kelziejordan/Arg`
+
+Main baseline:
+`9158fdec5f7cad33727b443dcb110ed958b8ab6f`
+
+Working branch:
+`work/arg-functional-v1-persistence-001`
+
+Exact CI-verified head:
+`41a8989ca87ad1bcce770ac90d473e9ccd4847ab`
+
+Draft PR:
+https://github.com/Kelziejordan/Arg/pull/143
+
+All four exact-head CI workflows passed. The PostgreSQL TCS + Knowledge Vault integration, fresh-process recovery, exactly-once observation identity, replay rejection, Companion UI E2E, and file-backed regression suites are CI-verified. ArgCore 008 and both accepted architectures remain frozen. No production migration, deployment, or protected merge occurred.
+
+PR #143 remains draft and unmerged pending review and explicit operator authorization. CI verification is not production proof.
+
 ## Current next gate
 
-Implement and independently validate the ArgOS Governance Benchmark harness and standardized adapter contract without modifying the frozen ArgOS governance boundary.
-
-The benchmark harness must first establish its own correctness before consequential failure experiments begin.
-
-The required workload order is:
-`WL-01 → WL-02 → WL-03 → WL-04 → WL-05 → WL-06 → WL-07`
-
-After harness validation, proceed to baseline execution, native ArgOS execution, governed integrations, repetition, analysis, independent reproduction, and final reporting according to the frozen v1 sequence.
+1. Review PR #143 and its exact-head evidence.
+2. Merge only after explicit operator authorization.
+3. Complete post-merge verification. Production migration/deployment remains a separate, explicitly authorized gate.
+4. After ARG Functional v1 is shipped, the next user-selected milestone is LinkedIn profile and professional positioning.
+5. Resume the independent Governance Benchmark harness as a preserved secondary track when selected; do not let it displace the current completion objective.
 
 ## Evidence hierarchy
 

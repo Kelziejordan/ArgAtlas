@@ -6,16 +6,17 @@ It preserves what is known, what is evidenced, what remains uncertain, and what 
 
 ## Current project state
 
-The current cross-repository checkpoint is [PROJECT_STATE_2026-10-09.md](./docs/PROJECT_STATE_2026-10-09.md). It supersedes earlier status descriptions only where they conflict with verified current authority; historical checkpoints are retained as historical evidence and are not rewritten.
+The current cross-repository checkpoint is [PROJECT_STATE_2026-11-26.md](./docs/PROJECT_STATE_2026-11-26.md). It records the reconciled Arg main baseline, the exact ARG Functional v1 branch/commit, acceptance matrix, and exact-head CI evidence. Earlier checkpoints remain immutable historical records.
 
-The current PR-specific continuity addendum for ARG Companion PR #140 is [PR-140-CONTINUITY-RECONCILIATION-2026-11-09.md](./docs/PR-140-CONTINUITY-RECONCILIATION-2026-11-09.md). It records the canonical repository identity, exact PR head, inherited CI/PostgreSQL evidence, and remaining proof boundaries. It does not replace the general project-state checkpoint.
+The active implementation is [ARG Functional v1 draft PR #143](https://github.com/Kelziejordan/Arg/pull/143). The 2026-11-09 PR #140 continuity addendum remains historical and is not the current implementation target.
 
-Current executable ArgOS dependency: `@kelziejordan/argcore@1.0.0-argcore-008`. The R8/008 recovery/resume authority gate is closed at its bounded tested boundary and the foundation is frozen.
+Current executable Arg dependency: `@kelziejordan/argcore@1.0.0-argcore-008`. ArgCore 008 and both accepted architectures remain frozen.
 
 Current next gates:
-- Economic track: `ARGOS-AFF-001.2 — Affiliate Offer Validation and Economic Unit Definition`; validate the offer pool and economic unit before implementation expansion.
-- Separate engineering track: publishing-workflow proof associated with PR #91; verify the contract against runtime and tests, then address only demonstrated gaps.
-- Overall canonical lifecycle completion remains NOT_PROVEN.
+- Review PR #143 and merge only with explicit operator authorization.
+- Complete post-merge verification; production migration/deployment remains a separate authorization gate.
+- After ARG Functional v1 is shipped, the next user-selected milestone is LinkedIn profile and professional positioning.
+- The Governance Benchmark and other engineering tracks remain preserved secondary work; overall canonical lifecycle completion remains NOT_PROVEN.
 
 ## Canonical lifecycle
 

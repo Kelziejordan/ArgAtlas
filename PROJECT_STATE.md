@@ -1,7 +1,7 @@
 # ArgAtlas Project State
 
-Date: 2026-09-27
-Status: CURRENT — FRESH ENGINEERING RESTART
+Date: 2026-11-26
+Status: CURRENT — ARG FUNCTIONAL V1 PERSISTENCE CI-VERIFIED
 
 ## Current project position
 
@@ -98,16 +98,46 @@ Kelziejordan/Arg
 Current Arg implementation baseline before this documentation reset:
 2ed9867219d7ae3a931a094f0f9931181ed6ffea
 
-Current Arg main head after the 2026-09-27 documentation reset:
-8fb0a9c61f9abc5c3db86a2517b1b576778b12ea
+Current Arg main head as reconciled on 2026-11-26:
+9158fdec5f7cad33727b443dcb110ed958b8ab6f
+
+Current Arg Functional v1 working branch:
+work/arg-functional-v1-persistence-001
+
+Exact CI-verified branch head:
+41a8989ca87ad1bcce770ac90d473e9ccd4847ab
+
+Draft PR:
+https://github.com/Kelziejordan/Arg/pull/143
 
 Current Arg dependency boundary:
-@kelziejordan/argcore 1.0.0-argcore-006
+@kelziejordan/argcore 1.0.0-argcore-008
 
 Current ArgCore repository package:
-@kelziejordan/argcore 1.0.0-argcore-007
+@kelziejordan/argcore 1.0.0-argcore-008
 
-ArgOS must not silently upgrade itself to ArgCore-007. That is a separate contract-upgrade gate.
+ArgLearn dependency pin:
+d129803e6ef09920c47b8a3d8550e84bb97c1ff7
+
+ArgCore 008 remains frozen. Any future ArgCore contract upgrade is a separate explicit gate.
+
+## ARG Functional v1 persistence integration
+
+Status: IMPLEMENTED / TESTED / CI-VERIFIED / NOT MERGED / NOT DEPLOYED
+
+The current checkpoint is `docs/PROJECT_STATE_2026-11-26.md`. PR #143 adds the PostgreSQL Knowledge Vault journal beside PostgreSQL TCS, a shared asynchronous persistence factory, awaited ArgLearn interfaces, Companion completion capture, and restart reconciliation from authoritative TCS records.
+
+Exact-head CI passed all four workflows at `41a8989ca87ad1bcce770ac90d473e9ccd4847ab`:
+- Arg Orchestration CI — success, including PostgreSQL TCS integration.
+- ArgOS Memory Lifecycle — success.
+- ArgOS Proof Spine — success.
+- Arg B1 Denial Boundary — success.
+
+The PostgreSQL acceptance run verified TCS claims/transitions/concurrency/fresh-process recovery, Vault hash-chain integrity, exactly-once observation identity, concurrent idempotency, Companion bootstrap, real Companion browser execution, replay rejection, and fail-closed storage. Existing file-backed regressions also passed.
+
+TCS remains authoritative execution history; Knowledge Vault is derived memory. If a TCS outcome is durable but Vault capture is interrupted, restart reconciliation creates the missing observation without repeating the external action. Missing or corrupt Vault storage blocks provider invocation.
+
+Production status remains NOT DEPLOYED / NOT PROVEN IN PRODUCTION. The new migration ran only against disposable CI PostgreSQL. PR #143 is draft and unmerged. ArgCore 008 and both accepted architectures remain frozen.
 
 ## Proven boundaries
 
@@ -133,22 +163,14 @@ ArgOS must not silently upgrade itself to ArgCore-007. That is a separate contra
 
 ## Current checklist strategy
 
-The existing governance checklist remains historical execution evidence and is not to be rewritten to fabricate completion.
+1. Review PR #143 and its exact-head CI evidence.
+2. Merge only with explicit operator authorization.
+3. Run post-merge verification against the resulting main commit.
+4. Keep production migration and deployment separate and explicitly authorized.
+5. After ARG Functional v1 is shipped, proceed to the next user-selected milestone: LinkedIn profile and professional positioning.
+6. Preserve the Governance Benchmark, VTM, ACL-001, and remaining lifecycle gates as separate tracks. Reopen them only when the active objective requires them or the user selects them.
 
-The fresh operational sequence is:
-
-1. Reconcile current repository/package provenance.
-2. Close remaining checklist gates that materially establish lifecycle foundations.
-3. Freeze those proven boundaries.
-4. Implement the minimum ATL contract needed for the canonical lifecycle.
-5. Resolve VTM's exact role at Observation/Validation boundaries.
-6. Integrate DigitalHands through governed execution.
-7. Run one complete real-world lifecycle.
-8. Inject a controlled failure and verify the allowed recovery boundary.
-9. Record evidence and update certification claims.
-
-Do not create a parallel architecture to accomplish this sequence.
-
+Do not rebuild accepted foundations, reopen settled Preview deployment concerns, or expand scope because an adjacent improvement is discoverable.
 ## Evidence hierarchy
 
 Current executable implementation and CI evidence
