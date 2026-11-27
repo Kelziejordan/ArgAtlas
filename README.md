@@ -4,9 +4,11 @@ ArgAtlas is the engineering continuity, provenance, canonical lifecycle, and arc
 
 It preserves what is known, what is evidenced, what remains uncertain, and what must be proven before an implementation or claim is promoted.
 
-## Current project state — 2026-11-24
+## Current project state — 2026-11-26
 
 The current operating and PR reconciliation record is [ARG Operating and PR Reconciliation Addendum — 2026-11-24](./docs/operations/ARG_Operating_and_PR_Reconciliation_Addendum_2026-11-24.md).
+
+The latest cross-repository engineering checkpoint is [PROJECT_STATE_2026-11-26.md](./docs/PROJECT_STATE_2026-11-26.md). It records ARG Functional v1 persistence integration, exact branch/commit, acceptance matrix, and exact-head CI evidence.
 
 The canonical operational records are:
 - [G1-G10 minimum operational completion gates](./docs/operations/ARG_Minimum_Operational_Completion_Gates_2026-11-16.csv)
@@ -21,7 +23,9 @@ Current executable ArgOS dependency: `@kelziejordan/argcore@1.0.0-argcore-008`. 
 
 The September Governance Benchmark Specification v1 remains a valid future empirical research plan. The November 16 G1-G10/G2 operating decision supersedes the stale September benchmark-next-gate checkpoint as the immediate engineering priority; it does not cancel the benchmark specification.
 
-The prior [2026-10-09 project-state checkpoint](./docs/PROJECT_STATE_2026-10-09.md) and [PR #140 continuity reconciliation](./docs/PR-140-CONTINUITY-RECONCILIATION-2026-11-09.md) are retained as historical evidence and must not be treated as the current PR or operating state.
+ARG Functional v1 persistence integration is a bounded G2 deliverable, CI-verified at `41a8989ca87ad1bcce770ac90d473e9ccd4847ab` in [draft PR #143](https://github.com/Kelziejordan/Arg/pull/143). PR #143 is not merged or deployed. G2 remains active until its full register is satisfied.
+
+The prior [2026-10-09 project-state checkpoint](./docs/PROJECT_STATE_2026-10-09.md) and [PR #140 continuity reconciliation](./docs/PR-140-CONTINUITY-RECONCILIATION-2026-11-09.md) are retained as historical evidence and must not be treated as the current PR or operating state. The active Arg runtime implementation is PR #143, not PR #142.
 
 ## Canonical lifecycle
 
